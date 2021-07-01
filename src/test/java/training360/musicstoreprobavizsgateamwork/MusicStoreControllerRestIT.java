@@ -76,49 +76,49 @@ public class MusicStoreControllerRestIT {
 
     }
 
-//    @Test
-//    void testUpdateInstrumentPrice(){
-//
-//        template.postForObject("/api/instruments",
-//                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
-//                InstrumentDTO.class);
-//
-//
-//        template.put("/api/instruments/1", new UpdatePriceCommand(1000));
-//
-//        InstrumentDTO result = template.getForObject("/api/instruments/1",InstrumentDTO.class);
-//
-//        assertEquals(1000,result.getPrice());
-//
-//    }
-//
-//
-//
-//    @Test
-//    void testInstrumentNotFound(){
-//        Problem result = template.getForObject("/api/instruments/1", Problem.class);
-//
-//        assertEquals(URI.create("instruments/not-found"),result.getType());
-//        assertEquals(Status.NOT_FOUND, result.getStatus());
-//    }
-//
-//    @Test
-//    void testCreateWithInvalidName(){
-//        Problem result = template.postForObject("/api/instruments",
-//                new CreateInstrumentCommand("", InstrumentType.ELECTRIC_GUITAR, 2000),
-//                Problem.class);
-//        assertEquals(Status.BAD_REQUEST, result.getStatus());
-//
-//
-//    }
-//
-//    @Test
-//    void testCreateWithInvalidPrice(){
-//        Problem result = template.postForObject("/api/instruments",
-//                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, -2000),
-//                Problem.class);
-//        assertEquals(Status.BAD_REQUEST, result.getStatus());
-//
-//    }
+    @Test
+    void testUpdateInstrumentPrice(){
+
+        template.postForObject("/api/instruments",
+                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
+                InstrumentDTO.class);
+
+
+        template.put("/api/instruments/1", new UpdatePriceCommand(1000));
+
+        InstrumentDTO result = template.getForObject("/api/instruments/1",InstrumentDTO.class);
+
+        assertEquals(1000,result.getPrice());
+
+    }
+
+
+
+    @Test
+    void testInstrumentNotFound(){
+        Problem result = template.getForObject("/api/instruments/1", Problem.class);
+
+        assertEquals(URI.create("instruments/not-found"),result.getType());
+        assertEquals(Status.NOT_FOUND, result.getStatus());
+    }
+
+    @Test
+    void testCreateWithInvalidName(){
+        Problem result = template.postForObject("/api/instruments",
+                new CreateInstrumentCommand("", InstrumentType.ELECTRIC_GUITAR, 2000),
+                Problem.class);
+        assertEquals(Status.BAD_REQUEST, result.getStatus());
+
+
+    }
+
+    @Test
+    void testCreateWithInvalidPrice(){
+        Problem result = template.postForObject("/api/instruments",
+                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, -2000),
+                Problem.class);
+        assertEquals(Status.BAD_REQUEST, result.getStatus());
+
+    }
 
 }

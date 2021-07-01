@@ -59,4 +59,18 @@ public class MusicStoreService {
                 .filter(i -> i.getId().equals(id))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find instrument with this id: " + id));
     }
+
+    public InstrumentDTO updatePrice(Long id, UpdatePriceCommand command) {
+        Instrument instrument = findById(id);
+        if (instrument.getPrice() != command.getPrice()) {
+            instrument.setPrice(command.getPrice());
+            instrument.setPostDate(LocalDate.now());
+        }
+        return modelMapper.map(instrument, InstrumentDTO.class);
+    }
+
+    public void deleteInstrument(Long id) {
+        Instrument instrument = findById(id);
+        instruments.remove(instrument);
+    }
 }
