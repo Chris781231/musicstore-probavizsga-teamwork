@@ -34,7 +34,10 @@ public class MusicStoreController {
         musicStoreService.deleteAll();
     }
 
-
+    @GetMapping("/{id}")
+    public InstrumentDTO findInstrumentById(@PathVariable Long id) {
+        return musicStoreService.findInstrumentById(id);
+    }
 
 }
 

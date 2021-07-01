@@ -47,4 +47,16 @@ public class MusicStoreService {
         idGenerator = new AtomicLong();
         instruments.clear();
     }
+
+    public InstrumentDTO findInstrumentById(Long id) {
+        Instrument instrument = findById(id);
+
+        return modelMapper.map(instrument, InstrumentDTO.class);
+    }
+
+    private Instrument findById(Long id) {
+        return instruments.stream()
+                .filter(i -> i.getId().equals(id))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("Cannot find instrument with this id: " + id));
+    }
 }
