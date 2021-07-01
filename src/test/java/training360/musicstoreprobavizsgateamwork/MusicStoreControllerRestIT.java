@@ -24,58 +24,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class MusicStoreControllerRestIT {
 
-//    @Autowired
-//    TestRestTemplate template;
-//
-//
-//    @BeforeEach
-//    void init(){
-//        template.delete("/api/instruments");
-//    }
-//
-//
-//    @Test
-//    void testAddNewInstruments() {
-//
-//
-//        InstrumentDTO result =
-//                template.postForObject("/api/instruments",
-//                        new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
-//                        InstrumentDTO.class);
-//
-//        assertEquals("Fender", result.getBrand());
-//        assertEquals(InstrumentType.ELECTRIC_GUITAR, result.getType());
-//        assertEquals(2000, result.getPrice());
-//        assertEquals(LocalDate.now(), result.getPostDate());
-//
-//    }
-//
-//    @Test
-//    void testGetInstruments() {
-//
-//
-//        template.postForObject("/api/instruments",
-//                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
-//                InstrumentDTO.class);
-//
-//        template.postForObject("/api/instruments",
-//                new CreateInstrumentCommand("Gibson", InstrumentType.ELECTRIC_GUITAR, 2000),
-//                InstrumentDTO.class);
-//
-//
-//        List<InstrumentDTO> result = template.exchange(
-//                "/api/instruments",
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<List<InstrumentDTO>>() {
-//                }).getBody();
-//
-//        assertThat(result)
-//                .extracting(InstrumentDTO::getBrand)
-//                .containsExactly("Fender","Gibson");
-//
-//    }
-//
+    @Autowired
+    TestRestTemplate template;
+
+
+    @BeforeEach
+    void init(){
+        template.delete("/api/instruments");
+    }
+
+
+    @Test
+    void testAddNewInstruments() {
+
+
+        InstrumentDTO result =
+                template.postForObject("/api/instruments",
+                        new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
+                        InstrumentDTO.class);
+
+        assertEquals("Fender", result.getBrand());
+        assertEquals(InstrumentType.ELECTRIC_GUITAR, result.getType());
+        assertEquals(2000, result.getPrice());
+        assertEquals(LocalDate.now(), result.getPostDate());
+
+    }
+
+    @Test
+    void testGetInstruments() {
+
+
+        template.postForObject("/api/instruments",
+                new CreateInstrumentCommand("Fender", InstrumentType.ELECTRIC_GUITAR, 2000),
+                InstrumentDTO.class);
+
+        template.postForObject("/api/instruments",
+                new CreateInstrumentCommand("Gibson", InstrumentType.ELECTRIC_GUITAR, 2000),
+                InstrumentDTO.class);
+
+
+        List<InstrumentDTO> result = template.exchange(
+                "/api/instruments",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<InstrumentDTO>>() {
+                }).getBody();
+
+        assertThat(result)
+                .extracting(InstrumentDTO::getBrand)
+                .containsExactly("Fender","Gibson");
+
+    }
+
 //    @Test
 //    void testUpdateInstrumentPrice(){
 //

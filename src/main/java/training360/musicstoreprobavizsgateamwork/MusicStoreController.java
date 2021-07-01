@@ -1,7 +1,9 @@
 package training360.musicstoreprobavizsgateamwork;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,20 @@ public class MusicStoreController {
     public List<InstrumentDTO> getInstruments(@RequestParam Optional<String> brand, @RequestParam Optional<Integer> price) {
         return musicStoreService.getInstruments(brand,price);
     }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public InstrumentDTO addInstrument(@Valid @RequestBody CreateInstrumentCommand command) {
+        return musicStoreService.addInstrument(command);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAll() {
+        musicStoreService.deleteAll();
+    }
+
+
 
 }
 

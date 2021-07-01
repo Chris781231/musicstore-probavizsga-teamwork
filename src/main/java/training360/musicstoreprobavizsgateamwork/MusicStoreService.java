@@ -5,6 +5,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +33,18 @@ public class MusicStoreService {
                 .toList();
         Type targetListType = new TypeToken<List<Instrument>>(){}.getType();
         return modelMapper.map(filtered,targetListType);
+    }
+
+    public InstrumentDTO addInstrument(CreateInstrumentCommand command) {
+        Instrument instrument =
+                new Instrument(idGenerator.incrementAndGet(),
+                        command.getBrand(), command.getType(), command.getPrice(), LocalDate.now());
+        instruments.add(instrument);
+        return modelMapper.map(instrument, InstrumentDTO.class);
+    }
+
+    public void deleteAll() {
+        idGenerator = new AtomicLong();
+        instruments.clear();
     }
 }
